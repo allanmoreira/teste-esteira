@@ -23,7 +23,7 @@ pipeline {
 
                     //$NOVA_VERSAO = $NOVA_VERSAO
                     novaVersao = ${NOVA_VERSAO}
-                    if(novaVersao == true){
+                    if(novaVersao == "true"){
                         echo 'SIM'
                     } else {
                         echo 'NAO'
