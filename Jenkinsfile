@@ -40,6 +40,15 @@ pipeline {
             }
             steps {
                 script {
+                properties([
+                    parameters([
+                        booleanParam(
+                            defaultValue: true,
+                            description: '',
+                            name: 'NOVA_VERSAO'
+                        )
+                    ])
+                ])
                     echo 'Read pom file'
                     pom = readMavenPom file: "$POM_XML_FILE"
 
@@ -54,6 +63,12 @@ pipeline {
 
                     sh name: "Push local tag to Bitbucket",
                     script: "git push origin '${pom.version}'"
+
+                    if(novaVersao == "true"){
+                        echo 'SIM'
+                    } else {
+                        echo 'NAO'
+                    }
 
                     def version = pom.version.toString().split("\\.")
                     version[0] = version[0].toInteger()+1
