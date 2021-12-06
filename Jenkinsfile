@@ -58,7 +58,7 @@ pipeline {
                     sh name: 'Set remote origin url',
                     script: "git config remote.origin.url https://'${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}'@github.com/${GITHUB_CREDENTIALS_USR}/${ARTIFACT_ID}.git"
 
-                    echo params.NOVA_VER_123
+                    //echo params.NOVA_VER_123
                     echo ${NOVA_VER_123}
                     echo NOVA_VER_123
 
