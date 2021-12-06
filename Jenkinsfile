@@ -45,7 +45,7 @@ pipeline {
                         booleanParam(
                             defaultValue: true,
                             description: '',
-                            name: 'NOVA_VERSAO'
+                            name: 'NOVA_VER_123'
                         )
                     ])
                 ])
@@ -64,7 +64,7 @@ pipeline {
                     sh name: "Push local tag to Bitbucket",
                     script: "git push origin '${pom.version}'"
 
-                    if($NOVA_VERSAO == "true"){
+                    if($NOVA_VER_123 == "true"){
                         echo 'SIM'
                     } else {
                         echo 'NAO'
