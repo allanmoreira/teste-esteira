@@ -5,7 +5,7 @@
   
   <groupId>br.com.moreirallan</groupId>
   <artifactId>teste-esteira</artifactId>
-  <version>65.0.0</version>
+  <version>66.0.0</version>
 
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
