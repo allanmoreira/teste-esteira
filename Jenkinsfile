@@ -7,7 +7,7 @@ pipeline {
         ARTIFACT_ID = ""
         ARTIFACT_NAME = ""
         JAR_NAME = ""
-        NOVA_VERSAO = false
+        //NOVA_VERSAO = false
     }
     stages {
         stage ('Build') {
@@ -21,7 +21,12 @@ pipeline {
                     ARTIFACT_ID = "${pom.artifactId}"
                     ARTIFACT_NAME = "${ARTIFACT_ID}-${POM_XML_VERSION}"
 
-                    $NOVA_VERSAO = $NOVA_VERSAO
+                    //$NOVA_VERSAO = $NOVA_VERSAO
+                    if($NOVA_VERSAO == true){
+                        echo 'SIM'
+                    } else {
+                        echo 'NAO'
+                    }
                 }
             }
         }
@@ -46,12 +51,6 @@ pipeline {
 
                     sh name: "Push local tag to Bitbucket",
                     script: "git push origin '${pom.version}'"
-
-                    if($NOVA_VERSAO == true){
-                        echo 'SIM'
-                    } else {
-                        echo 'NAO'
-                    }
 
                     def version = pom.version.toString().split("\\.")
                     version[0] = version[0].toInteger()+1
