@@ -33,7 +33,7 @@ pipeline {
                     pom = readMavenPom file: "$POM_XML_FILE"
 
                     sh name: 'Checkout Git master branch', 
-                    script: "git checkout -b ${BRANCH_DEFAULT} remotes/origin/${BRANCH_DEFAULT}"
+                    script: "git checkout -b ${BRANCH_DEFAULT} remotes/origin/${BRANCH_DEFAULT} || true"
 
                     sh name: 'Set remote origin url',
                     script: "git config remote.origin.url https://'${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}'@github.com/${GITHUB_CREDENTIALS_USR}/${ARTIFACT_ID}.git"
