@@ -40,15 +40,17 @@ pipeline {
             }
             steps {
                 script {
-                properties([
-                    parameters([
-                        booleanParam(
-                            defaultValue: true,
-                            description: '',
-                            name: 'NOVA_VER_123'
-                        )
+                /*
+                    properties([
+                        parameters([
+                            booleanParam(
+                                defaultValue: true,
+                                description: '',
+                                name: 'NOVA_VER_123'
+                            )
+                        ])
                     ])
-                ])
+                */
                     echo 'Read pom file'
                     pom = readMavenPom file: "$POM_XML_FILE"
 
@@ -60,7 +62,7 @@ pipeline {
 
                     echo params.NOVA_VER_123
                     echo NOVA_VER_123
-                    
+
                     if(params.NOVA_VER_123 == true){
                         echo 'SIM'
                     } else {
