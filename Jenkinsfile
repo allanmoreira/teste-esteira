@@ -64,7 +64,7 @@ pipeline {
                     sh name: "Push local tag to Bitbucket",
                     script: "git push origin '${pom.version}'"
 
-                    if(novaVersao == "true"){
+                    if($NOVA_VERSAO == "true"){
                         echo 'SIM'
                     } else {
                         echo 'NAO'
