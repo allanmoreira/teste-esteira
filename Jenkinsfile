@@ -57,13 +57,7 @@ pipeline {
 
                     sh name: 'Set remote origin url',
                     script: "git config remote.origin.url https://'${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}'@github.com/${GITHUB_CREDENTIALS_USR}/${ARTIFACT_ID}.git"
-                    
-                    if(params.NOVA_VER_123 == true){
-                        echo 'SIM'
-                    } else {
-                        echo 'NAO'
-                    }
-                    
+
                     sh name: "Create local Git tag for ${POM_XML_VERSION}",
                     script: "git tag -a '${POM_XML_VERSION}' -m \"tag ${POM_XML_VERSION} gerada\""
 
@@ -71,7 +65,14 @@ pipeline {
                     script: "git push origin '${pom.version}'"
 
                     def version = pom.version.toString().split("\\.")
-                    version[0] = version[0].toInteger()+1
+                    if(params.NOVA_VER_123 == true){
+                        version[0] = version[0].toInteger()+1
+                        version[1] = 0
+                        version[2] = 0
+                    } else {
+                        version[2] = version[2].toInteger()+1
+                    }
+
                     pom.version = version.join('.')
                     echo "Incremented POM project version to ${pom.version}"
 
