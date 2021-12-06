@@ -7,6 +7,7 @@ pipeline {
         ARTIFACT_ID = ""
         ARTIFACT_NAME = ""
         JAR_NAME = ""
+        NOVA_VERSAO = false
     }
     stages {
         stage ('Build') {
@@ -19,6 +20,8 @@ pipeline {
                     POM_XML_VERSION = "${pom.version}"
                     ARTIFACT_ID = "${pom.artifactId}"
                     ARTIFACT_NAME = "${ARTIFACT_ID}-${POM_XML_VERSION}"
+
+                    $NOVA_VERSAO = $NOVA_VERSAO
                 }
             }
         }
