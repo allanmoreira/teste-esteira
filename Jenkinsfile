@@ -22,12 +22,14 @@ pipeline {
                     ARTIFACT_NAME = "${ARTIFACT_ID}-${POM_XML_VERSION}"
 
                     //$NOVA_VERSAO = $NOVA_VERSAO
+                    /*
                     novaVersao = ${NOVA_VERSAO}
                     if(novaVersao == "true"){
                         echo 'SIM'
                     } else {
                         echo 'NAO'
                     }
+                    */
                 }
             }
         }
