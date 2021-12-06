@@ -40,7 +40,6 @@ pipeline {
             }
             steps {
                 script {
-                /*
                     properties([
                         parameters([
                             booleanParam(
@@ -50,7 +49,6 @@ pipeline {
                             )
                         ])
                     ])
-                */
                     echo 'Read pom file'
                     pom = readMavenPom file: "$POM_XML_FILE"
 
@@ -60,8 +58,9 @@ pipeline {
                     sh name: 'Set remote origin url',
                     script: "git config remote.origin.url https://'${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}'@github.com/${GITHUB_CREDENTIALS_USR}/${ARTIFACT_ID}.git"
 
-                    echo params.NOVA_VER_123
-                    echo NOVA_VER_123
+                    echo Boolean.toString(params.NOVA_VER_123)
+                    echo Boolean.toString($NOVA_VER_123)
+                    echo Boolean.toString(NOVA_VER_123)
 
                     if(params.NOVA_VER_123 == true){
                         echo 'SIM'
