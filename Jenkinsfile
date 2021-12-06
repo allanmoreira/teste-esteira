@@ -44,6 +44,12 @@ pipeline {
                     sh name: "Push local tag to Bitbucket",
                     script: "git push origin '${pom.version}'"
 
+                    if($NOVA_VERSAO == true){
+                        echo 'SIM'
+                    } else {
+                        echo 'NAO'
+                    }
+
                     def version = pom.version.toString().split("\\.")
                     version[0] = version[0].toInteger()+1
                     pom.version = version.join('.')
