@@ -57,18 +57,18 @@ pipeline {
 
                     sh name: 'Set remote origin url',
                     script: "git config remote.origin.url https://'${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}'@github.com/${GITHUB_CREDENTIALS_USR}/${ARTIFACT_ID}.git"
-                    
-                    sh name: "Create local Git tag for ${POM_XML_VERSION}",
-                    script: "git tag -a '${POM_XML_VERSION}' -m \"tag ${POM_XML_VERSION} gerada\""
-
-                    sh name: "Push local tag to Bitbucket",
-                    script: "git push origin '${pom.version}'"
 
                     if(params.NOVA_VER_123 == "true"){
                         echo 'SIM'
                     } else {
                         echo 'NAO'
                     }
+                    
+                    sh name: "Create local Git tag for ${POM_XML_VERSION}",
+                    script: "git tag -a '${POM_XML_VERSION}' -m \"tag ${POM_XML_VERSION} gerada\""
+
+                    sh name: "Push local tag to Bitbucket",
+                    script: "git push origin '${pom.version}'"
 
                     def version = pom.version.toString().split("\\.")
                     version[0] = version[0].toInteger()+1
