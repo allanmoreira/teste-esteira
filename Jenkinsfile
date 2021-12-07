@@ -50,7 +50,7 @@ pipeline {
                             )
                         ])
                     ])
-                     */
+                    */
                     echo 'Read pom file'
                     pom = readMavenPom file: "$POM_XML_FILE"
 
@@ -67,7 +67,7 @@ pipeline {
                     script: "git push origin '${pom.version}'"
 
                     def version = pom.version.toString().split("\\.")
-                    if(params.NOVA_VER_123 == true){
+                    if(params.NOVA_VERSAO == true){
                         version[0] = version[0].toInteger()+1
                         version[1] = 0
                         version[2] = 0
