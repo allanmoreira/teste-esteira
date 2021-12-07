@@ -40,6 +40,7 @@ pipeline {
             }
             steps {
                 script {
+                    /*
                     properties([
                         parameters([
                             booleanParam(
@@ -49,6 +50,7 @@ pipeline {
                             )
                         ])
                     ])
+                     */
                     echo 'Read pom file'
                     pom = readMavenPom file: "$POM_XML_FILE"
 
