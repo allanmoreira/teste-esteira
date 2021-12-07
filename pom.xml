@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>br.com.moreirallan</groupId>
   <artifactId>teste-esteira</artifactId>
-  <version>71.0.0</version>
+  <version>71.0.1</version>
   <properties>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <java.version>1.8</java.version>
