@@ -60,12 +60,6 @@ pipeline {
                     sh name: 'Set remote origin url',
                     script: "git config remote.origin.url https://'${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}'@github.com/${GITHUB_CREDENTIALS_USR}/${ARTIFACT_ID}.git"
 
-                    sh name: "Create local Git tag for ${POM_XML_VERSION}",
-                    script: "git tag -a '${POM_XML_VERSION}' -m \"tag ${POM_XML_VERSION} gerada\""
-
-                    sh name: "Push local tag to Bitbucket",
-                    script: "git push origin '${pom.version}'"
-
                     def version = pom.version.toString().split("\\.")
                     if(params.NOVA_VERSAO == true){
                         version[0] = version[0].toInteger()+1
@@ -74,6 +68,14 @@ pipeline {
                     } else {
                         version[2] = version[2].toInteger()+1
                     }
+
+                    POM_XML_VERSION = "${pom.version}"
+
+                    sh name: "Create local Git tag for ${POM_XML_VERSION}",
+                    script: "git tag -a '${POM_XML_VERSION}' -m \"tag ${POM_XML_VERSION} gerada\""
+
+                    sh name: "Push local tag to Bitbucket",
+                    script: "git push origin '${pom.version}'"
 
                     pom.version = version.join('.')
                     echo "Incremented POM project version to ${pom.version}"
