@@ -68,19 +68,17 @@ pipeline {
                     } else {
                         version[2] = version[2].toInteger()+1
                     }
-
+                    pom.version = version.join('.')
+                    writeMavenPom model: pom, file: "${POM_XML_FILE}", name: 'Write Maven POM file'
                     POM_XML_VERSION = "${pom.version}"
+
+                    echo "Incremented POM project version to ${POM_XML_VERSION}"
 
                     sh name: "Create local Git tag for ${POM_XML_VERSION}",
                     script: "git tag -a '${POM_XML_VERSION}' -m \"tag ${POM_XML_VERSION} gerada\""
 
                     sh name: "Push local tag to Bitbucket",
                     script: "git push origin '${pom.version}'"
-
-                    pom.version = version.join('.')
-                    echo "Incremented POM project version to ${pom.version}"
-
-                    writeMavenPom model: pom, file: "${POM_XML_FILE}", name: 'Write Maven POM file'
 
                     sh name: "Add POM file to Git",
                     script: "git add ${POM_XML_FILE}"
